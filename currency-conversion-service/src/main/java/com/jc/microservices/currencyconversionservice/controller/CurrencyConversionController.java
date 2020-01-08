@@ -1,6 +1,8 @@
 package com.jc.microservices.currencyconversionservice.controller;
 
 import com.jc.microservices.currencyconversionservice.bean.CurrencyConversionBean;
+import com.jc.microservices.currencyconversionservice.proxy.CurrencyExchangeServiceProxy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +16,9 @@ import java.util.Map;
 @RestController
 public class CurrencyConversionController {
 
+    @Autowired
+    private CurrencyExchangeServiceProxy currencyExchangeServiceProxy;
+
     @GetMapping("/currency-converter/from/{from}/to/{to}/quantity/{quantity}")
     public CurrencyConversionBean getCurrencyConversion(@PathVariable String from, @PathVariable String to, @PathVariable BigDecimal quantity) {
 
@@ -24,6 +29,15 @@ public class CurrencyConversionController {
                 new RestTemplate().getForEntity("http://localhost:8000/currency-exchange/from/{from}/to/{to}", CurrencyConversionBean.class, uriVariables);
 
         CurrencyConversionBean response = responseEntity.getBody();
+        return new CurrencyConversionBean(response.getId(), from, to, response.getConversionMultiple(), quantity,
+                                          quantity.multiply(response.getConversionMultiple()), 0);
+    }
+
+    //Same method using Feign instead of rest template
+    @GetMapping("/currency-converter-feign/from/{from}/to/{to}/quantity/{quantity}")
+    public CurrencyConversionBean getCurrencyConversionFeign(@PathVariable String from, @PathVariable String to, @PathVariable BigDecimal quantity) {
+
+        CurrencyConversionBean response = currencyExchangeServiceProxy.getExchangeValue(from, to);
         return new CurrencyConversionBean(response.getId(), from, to, response.getConversionMultiple(), quantity,
                                           quantity.multiply(response.getConversionMultiple()), 0);
     }
