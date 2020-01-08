@@ -50,7 +50,7 @@
         </dependency>
         <!-- Trace will be sent via amqp (by default Rabbit MQ)-->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
+            <groupId>org.springframework.amqp</groupId>
             <artifactId>spring-rabbit</artifactId>
         </dependency>
         <!-- Trace will be written in zipkin format-->
