@@ -9,11 +9,13 @@
         <module name="microservices-spring-cloud" />
         <module name="limits-service" />
         <module name="spring-cloud-config-server" />
+        <module name="currency-exchange-service" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="currency-exchange-service" options="-parameters" />
       <module name="limits-service" options="-parameters" />
       <module name="spring-cloud-config-server" options="-parameters" />
     </option>
