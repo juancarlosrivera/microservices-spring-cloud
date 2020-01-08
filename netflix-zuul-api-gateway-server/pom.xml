@@ -39,12 +39,12 @@
         <!-- Trace will be sent via amqp (by default Rabbit MQ)-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+            <artifactId>spring-rabbit</artifactId>
         </dependency>
         <!-- Trace will be written in zipkin format-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-sleuth-zipkin</artifactId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
         </dependency>
 
         <dependency>
