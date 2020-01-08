@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="currency-conversion-service" />
+        <module name="netflix-zuul-api-gateway-server" />
         <module name="netflix-eureka-naming-server" />
         <module name="microservices-spring-cloud" />
         <module name="currency-exchange-service" />
@@ -21,6 +22,7 @@
       <module name="currency-exchange-service" options="-parameters" />
       <module name="limits-service" options="-parameters" />
       <module name="netflix-eureka-naming-server" options="-parameters" />
+      <module name="netflix-zuul-api-gateway-server" options="-parameters" />
       <module name="spring-cloud-config-server" options="-parameters" />
     </option>
   </component>
